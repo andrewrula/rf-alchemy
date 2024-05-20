@@ -1,5 +1,44 @@
-//Test Page Please Ignore
-//A second change to test commits
+var energy = 0
+var energyCap = 100
+var energyIncrement = 2
+
+function incrementEnergy(curr,cap,inc){
+    console.log("Incrementing Energy")
+    if(curr + inc >= cap){
+        return cap
+    }
+    else{
+        curr = curr + inc
+        return curr;
+    }
+}
+
+function unitTest (){
+//Increment Test
+console.log("Energy:" + energy)
+energy = incrementEnergy(energy,energyCap, energyIncrement)
+console.log("Energy:" + energy)
+console.log("Expected Outcome: 2")
+
+//MultiIncrement Test
+energy = incrementEnergy(energy,energyCap, energyIncrement)
+energy = incrementEnergy(energy,energyCap, energyIncrement)
+energy = incrementEnergy(energy,energyCap, energyIncrement)
+console.log("Energy:" + energy)
+console.log("Expected Outcome: 8")
+
+//Set and Increment Test
+energy = 97
+console.log("Setting Energy to 97")
+energy = incrementEnergy(energy,energyCap, energyIncrement)
+
+//Cap Test
+console.log("Energy:" + energy)
+console.log("Expected Outcome: 99")
+energy = incrementEnergy(energy,energyCap, energyIncrement)
+console.log("Energy:" + energy)
+console.log("Expected Outcome: 100")
+};
 
 console.log("Hello World")
-console.log("I am reporting that I have been changed.")
+unitTest();
