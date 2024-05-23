@@ -13,6 +13,20 @@ function incrementEnergy(curr,cap,inc){
     }
 }
 
+function incrementTest(){
+    //parse document, find one that's been assigned the id 'number' and save to a variable
+    const numberElement = document.getElementById('number');
+
+    //get the value of the element (which is always a string) and convert it to an int
+    let currentNumber = parseInt(numberElement.textContent);
+
+    //increment the saved number by 1
+    currentNumber++;
+
+    //set the text of the html element (which is always a string) to the current value of the variable
+    numberElement.textContent = currentNumber;
+}
+
 function unitTest (){
 //Increment Test
 console.log("Energy:" + energy)
