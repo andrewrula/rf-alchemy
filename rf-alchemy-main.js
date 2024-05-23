@@ -2,6 +2,11 @@ var energy = 0
 var energyCap = 20
 var energyIncrement = 3
 
+var wood = 0
+var woodCap = 20
+var woodIncrement = 5
+var woodCost = 10
+
 function incrementEnergy(){
     console.log("Incrementing Energy") 
     workingEnergy = energy;
@@ -12,8 +17,30 @@ function incrementEnergy(){
         workingEnergy = workingEnergy + energyIncrement
     }
     energy = workingEnergy
-    const numberElement = document.getElementById('number')
+    const numberElement = document.getElementById('energyNumber')
     numberElement.textContent = energy
+}
+
+function incrementWood(){
+    console.log("Incrementing Wood") 
+    workingWood = wood;
+    if(energy < woodCost){
+        console.log ("Not Enough Energy")
+        return;
+    }
+    else if(workingWood + woodIncrement >= woodCap){
+        workingWood = woodCap;
+        energy = energy - woodCost;
+    }
+    else{
+        workingWood = workingWood + woodIncrement;
+        energy = energy - woodCost;
+    }
+    wood = workingWood;
+    const woodNumberElement = document.getElementById('woodNumber');
+    woodNumberElement.textContent = wood;
+    const energyNumberElement = document.getElementById('energyNumber');
+    energyNumberElement.textContent = energy;
 }
 
 function incrementTest(){
