@@ -10,10 +10,12 @@
     <script src="rf-alchemy-main.js"></script>
 
     <!-- This is a simple element with an id of number - this lets your script find and grab it-->
-    <p id="number">1</p>
+    <p> Energy is set to a cap of 20, and increments by 3.</p>
+    <p> Energy: </p>
+    <p id="number">0</p>
 
     <!-- This button literally is finding your "incrementNumber" function and calling it when clicked -->
-    <button onclick="incrementTest()">Increment Test</button>
+    <button onclick="incrementEnergy(energy, energyCap, energyIncrement)">Increment Energy</button>
 
     <!-- These three lines above are the only moving parts! Everything else is boilerplate -->
 </body>

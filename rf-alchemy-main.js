@@ -1,16 +1,19 @@
 var energy = 0
-var energyCap = 100
-var energyIncrement = 2
+var energyCap = 20
+var energyIncrement = 3
 
-function incrementEnergy(curr,cap,inc){
-    console.log("Incrementing Energy")
-    if(curr + inc >= cap){
-        return cap
+function incrementEnergy(){
+    console.log("Incrementing Energy") 
+    workingEnergy = energy;
+    if(workingEnergy + energyIncrement >= energyCap){
+        workingEnergy = energyCap;
     }
     else{
-        curr = curr + inc
-        return curr;
+        workingEnergy = workingEnergy + energyIncrement
     }
+    energy = workingEnergy
+    const numberElement = document.getElementById('number')
+    numberElement.textContent = energy
 }
 
 function incrementTest(){
@@ -55,4 +58,4 @@ console.log("Expected Outcome: 100")
 };
 
 console.log("Hello World")
-unitTest();
+// unitTest();
