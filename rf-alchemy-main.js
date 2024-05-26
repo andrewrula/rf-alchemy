@@ -2,61 +2,59 @@ var resourceBank = {
     wood:{
         quant: 0,
         capacity: 20,
-        increment: 5,
         cost: 10,
         costType: "energy",
+        id: "woodCount"
     },
     energy:{
         quant: 0,
         capacity: 20,
-        increment: 3,
-        cost: 10,
+        cost: 0,
         costType: "none",
-
+        id: "energyCount"
+    },
+    gold:{
+        quant: 0,
+        capacity: 1000,
+        cost: 20,
+        costType: "wood",
+        id: "goldCount"
     },
 }
 
-function incrementEnergy(){
-    console.log("Incrementing Energy") 
-    workingEnergy = resourceBank.energy.quant;
-    if(workingEnergy + resourceBank.energy.increment >= resourceBank.energy.capacity){
-        workingEnergy = resourceBank.energy.capacity;
-    }
-    else{
-        workingEnergy = workingEnergy + resourceBank.energy.increment
-    };
-    resourceBank.energy.quant = workingEnergy;
-    const numberElement = document.getElementById('energyNumber');
-    numberElement.textContent = resourceBank.energy.quant;
-}
-
-function incrementWood(){
-    console.log("Incrementing Wood") 
-    workingWood = resourceBank.wood.quant;
-    if(resourceBank.energy.quant < resourceBank.wood.cost){
-        console.log ("Not Enough Energy")
-        return;
-    }
-    else if(workingWood + resourceBank.wood.increment >= resourceBank.wood.capacity){
-        workingWood = resourceBank.wood.capacity;
-        resourceBank.energy.quant = resourceBank.energy.quant - resourceBank.wood.cost;
-    }
-    else{
-        workingWood = workingWood + resourceBank.wood.increment;
-        resourceBank.energy.quant = resourceBank.energy.quant - resourceBank.wood.cost;
-    }
-    resourceBank.wood.quant = workingWood;
-    const woodNumberElement = document.getElementById('woodNumber');
-    woodNumberElement.textContent = resourceBank.wood.quant;
-    const energyNumberElement = document.getElementById('energyNumber');
-    energyNumberElement.textContent = resourceBank.energy.quant;
-}
-
-
 //Generic Resource Go Up By (number)
 function incrementResource(resource, increment){
+    workingResource = resource
+    workingResourceCostType = workingResource.costType
+    workingResourceCostQuant = workingResource.cost
+    if(workingResourceCostType != "none"){
+        if(resourceBank[workingResourceCostType].quant < workingResourceCostQuant){
+        console.log ("Not Enough " + workingResourceCostType)
+        return;
+        }
+    }
+    if(workingResource.quant + increment >= workingResource.capacity){
+        workingResource.quant = resource.capacity;
+        if(workingResourceCostType != "none"){
+        resourceBank[workingResourceCostType].quant = resourceBank[workingResourceCostType].quant - workingResourceCostQuant;
+        };
+        console.log("Capped!")
+        }
+        else{
+        if(workingResourceCostType != "none"){
+            resourceBank[workingResourceCostType].quant = resourceBank[workingResourceCostType].quant - workingResourceCostQuant;
+            };
+        workingResource.quant = workingResource.quant + increment
+        };
+    resource = workingResource;
+    const resourceElement = document.getElementById(resource.id);
+    resourceElement.textContent = resource.quant;
+    if(workingResourceCostType != "none"){
+        const costElement = document.getElementById(resourceBank[workingResourceCostType].id);
+        costElement.textContent = resourceBank[workingResourceCostType].quant;
+        };
+};
 
-}
 function unitTest (){
 //Increment Test
 console.log("Energy:" + energy)
@@ -85,5 +83,4 @@ console.log("Expected Outcome: 100")
 };
 
 console.log("Hello World")
-console.log(resourceBank.wood)
 // unitTest();

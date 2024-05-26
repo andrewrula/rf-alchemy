@@ -12,13 +12,17 @@
     <!-- This is a simple element with an id of number - this lets your script find and grab it-->
     <p> Energy is set to a cap of 20, and increments by 3.</p>
     <p> Energy: </p>
-    <p id="energyNumber">0</p>
+    <p id="energyCount">0</p>
     <!-- This button literally is finding your "incrementNumber" function and calling it when clicked -->
-    <button onclick="incrementEnergy()">Increment Energy</button>
+    <button onclick="incrementResource(resourceBank.energy, 3)">Increment Energy</button>
     <p> Wood is set to a cap of 20, and increments by 5.</p>
-    <p> Energy: </p>
-    <p id="woodNumber">0</p>
-    <button onclick="incrementWood()">Increment Wood (cost 10 energy)</button>
+    <p> Wood: </p>
+    <p id="woodCount">0</p>
+    <button onclick="incrementResource(resourceBank.wood, 5)">Increment Wood (cost 10 energy)</button>
+    <p> Gold is set to a cap of 1000, and increments by 1.</p>
+    <p> Gold: </p>
+    <p id="goldCount">0</p>
+    <button onclick="incrementResource(resourceBank.gold, 1)">Increment Gold (cost 20 wood)</button>
 
 
     <!-- These three lines above are the only moving parts! Everything else is boilerplate -->
