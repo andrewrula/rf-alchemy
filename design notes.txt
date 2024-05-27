@@ -1,0 +1,78 @@
+resourceBank
+    -resource
+        id
+        quantity
+        tags [thing, stuff, wow]
+
+Utility Functions:
+
+-incrementResource()
+-payCost()
+-checkCatalyst()
+-checkRequirement()
+
+
+Phase 0: The Wilderness
+
+
+Personal Stats:
+-Energy
+-Stamina (+ max energy)
+-Strength (+physical tagged?)
+
+-Take a moment (+1 energy) 
+-Restful Sleep (rapid energy regen, everything else disabled until capped)
+    -Allows for Wake Up Early (Cancel Sleep, lose 50% energy)
+    -Requires Bed
+
+-Chop Wood
+    -Costs energy
+    -Gives wood
+    -Impacted by Axe
+
+-Dig Hole
+    -Costs energy
+    -Gives dirt (very rarely crystal)
+    -Impacted by Shovel
+    -Impacted by Dowsing Rod (Upgrade for more crystal per dig?)
+
+Explore
+    -First time: Discover
+    -Unlocks discover townsfolk
+        (Discovers Blacksmith, Miller, Tiller, Steward) 
+        (Warlord not included)
+
+
+Phase 1: The Village
+TOWN
+Blacksmith 
+     - Talk (+Reputation)
+     - Work (- Stamina, + Strength, +Coin)
+     - Make Iron Shovel (Upgrade. Visible once you have land. Allows Dig.)
+        - Make Silver Shovel (Upgrade. Visible once you find silver. Upgrades Dig.)
+            - Make Super Shovel (Upgrade, Visible once you find something special.) 
+
+Inn
+     -Talk (+Reputation)
+     -Eat (-Coin, Small stamina recover)
+     -Work (-Stamina, +Coinage
+     -Rest (--Coinage, Max your stamina)
+     -Discount (Upgrade, 
+
+Herbalist
+     -Talk (+ Reputation)
+     -Buy Herbal Medicine
+     -Gossip (- Reputation, +Secret[low cap])
+
+Farmhand
+     - Work (-Stamina, +Coinage)
+     - Buy Wheat (+Stamina)
+
+Noble
+     - Tithe (-Coin, +Reputation)
+     - Serve (-Reputation, +Coinage)
+     -Convince (--Reputation, +1 Plot of Land)
+
+Hunter
+    -Buy Game (+food, -coinage)
+    -Go On A Hunt

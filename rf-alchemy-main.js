@@ -1,3 +1,4 @@
+//Resource Manager
 var resourceBank = {
     wood:{
         quant: 0,
@@ -22,68 +23,89 @@ var resourceBank = {
     },
 }
 
-//Generic Resource Go Up By (number)
-function incrementResource(resource, increment){
-    //Declare some vars
-    workingResource = resource
-    workingResourceCostType = workingResource.costType
-    workingResourceCostQuant = workingResource.cost
-//Check if there is a cost. If no cost, continue on. Else, check if we have enough. If we don't, evac function. 
-        //TODO: Multi-cost-support.
-        //TODO: Catalyst support
-    if(workingResourceCostType != "none"){
-        if(resourceBank[workingResourceCostType].quant < workingResourceCostQuant){
-        console.log ("Not Enough " + workingResourceCostType)
-        return;
-        }        
-//If it's not 'none' and we have enough, reduce those costs by the cost amount, and push to the html
-        else {
-        resourceBank[workingResourceCostType].quant = resourceBank[workingResourceCostType].quant - workingResourceCostQuant;
-        const costElement = document.getElementById(resourceBank[workingResourceCostType].id);
-        costElement.textContent = resourceBank[workingResourceCostType].quant;
+//Utility Functions
+    //Generic Resource Go Up By (number)
+        function incrementResource(resource, increment){
+        //Setup Vars
+            var workingResource = resourceBank[resource]
+            if(workingResource.quant + increment >= workingResource.capacity){
+                workingResource.quant = resourceBank[resource].capacity;
+                console.log("Resource incremented but hit cap!")
+                }
+            else{
+                workingResource.quant = workingResource.quant + increment
+                console.log("Resource incremented.")
+                };
+            updateResourceBank(resource, workingResource);
+            updateResourceHTML(resource)
     };
-};
-//Now we check if we're going to hit capacity. If yes, turn working number into the capacity. If no, change working number into working number + increment. 
-    if(workingResource.quant + increment >= workingResource.capacity){
-        workingResource.quant = resource.capacity;
-        console.log("Resource incremented but is capped!")
-        }
-        else{
-        workingResource.quant = workingResource.quant + increment
-        console.log("Resource incremented.")
+
+    //Checks and Pays Cost 
+        function payCost(resource, neededValue){
+        //Checks if cost can be paid
+        if(checkCost(resource,neededValue) == false){
+            console.log("Failed to Pay Cost")
+            return false;
         };
-//Adjust resource as needed and push to html
-    resource = workingResource;
-    const resourceElement = document.getElementById(resource.id);
-    resourceElement.textContent = resource.quant;
+        //Checks if cost is none
+        if(resource == "none"){return true;}
+        //Update resourceBank
+        resourceBank[resource].quant = resourceBank[resource].quant - neededValue;
+        console.log ("Cost Paid")
+        //Update HTML display
+        updateResourceHTML(resource);
+    };
+
+    //Checks if we have sufficient resource. Returns boolean.
+        function checkCost(resource, neededValue){
+            if(resource == "none"){
+                return true;}
+            else if(resourceBank[resource].quant >= neededValue){
+                return true;
+                }
+            else if (resourceBank[resource].quant < neededValue){
+                console.log("Not enough " + resource)
+                return false
+            }
+    };
+
+    //Updates resourceBank
+        function updateResourceBank(resourceID, newResourceObject){
+            resourceBank[resourceID] = newResourceObject
+        }
+
+    //Updates HTML for provided resource from resourceBank
+        function updateResourceHTML(resource){
+        const costElement = document.getElementById(resourceBank[resource].id);
+        costElement.textContent = resourceBank[resource].quant;
+    };
+
+    //NYI - 
+        function checkCatalyst(resource, neededValue){
+
+    };
+    //NYI
+        function setResource(resource, setValue, ignoreCap){
+        
+    };
+
+
+
+//Player Functions
+function takeAMoment(){
+    incrementResource("energy", 3)
 };
-
-function unitTest (){
-//Increment Test
-console.log("Energy:" + energy)
-energy = incrementEnergy(energy,energyCap, energyIncrement)
-console.log("Energy:" + energy)
-console.log("Expected Outcome: 2")
-
-//MultiIncrement Test
-energy = incrementEnergy(energy,energyCap, energyIncrement)
-energy = incrementEnergy(energy,energyCap, energyIncrement)
-energy = incrementEnergy(energy,energyCap, energyIncrement)
-console.log("Energy:" + energy)
-console.log("Expected Outcome: 8")
-
-//Set and Increment Test
-energy = 97
-console.log("Setting Energy to 97")
-energy = incrementEnergy(energy,energyCap, energyIncrement)
-
-//Cap Test
-console.log("Energy:" + energy)
-console.log("Expected Outcome: 99")
-energy = incrementEnergy(energy,energyCap, energyIncrement)
-console.log("Energy:" + energy)
-console.log("Expected Outcome: 100")
-};
+function chopWood(){
+    if (payCost("energy", 10) == false){
+        return;
+    }
+    incrementResource("wood",5)
+}
+function sellWood(){
+    if (payCost("wood", 20) == false){
+        return;
+    }
+    incrementResource("gold",1)
+}
 
 console.log("Hello World")
-// unitTest();
