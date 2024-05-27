@@ -3,22 +3,16 @@ var resourceBank = {
     wood:{
         quant: 0,
         capacity: 20,
-        cost: 10,
-        costType: "energy",
         id: "woodCount"
     },
     energy:{
         quant: 0,
         capacity: 20,
-        cost: 0,
-        costType: "none",
         id: "energyCount"
     },
     gold:{
         quant: 0,
         capacity: 1000,
-        cost: 20,
-        costType: "wood",
         id: "goldCount"
     },
 }
