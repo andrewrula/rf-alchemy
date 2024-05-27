@@ -27,17 +27,17 @@ var resourceBank = {
     //Generic Resource Go Up By (number)
         function incrementResource(resource, increment){
         //Setup Vars
-            var workingResource = resourceBank[resource]
+            var workingResource = resourceBank[resource];
             if(workingResource.quant + increment >= workingResource.capacity){
                 workingResource.quant = resourceBank[resource].capacity;
-                console.log("Resource incremented but hit cap!")
-                }
+                console.log("Resource incremented but hit cap!");
+            }
             else{
                 workingResource.quant = workingResource.quant + increment
-                console.log("Resource incremented.")
-                };
+                console.log("Resource incremented.");
+            };
             updateResourceBank(resource, workingResource);
-            updateResourceHTML(resource)
+            updateResourceHTML(resource);
     };
 
     //Checks and Pays Cost 
@@ -48,12 +48,14 @@ var resourceBank = {
             return false;
         };
         //Checks if cost is none
-        if(resource == "none"){return true;}
+        if(resource == "none"){
+            return true;
+        };
         //Update resourceBank
+            //TODO: Update to use updateResourceBank()
         resourceBank[resource].quant = resourceBank[resource].quant - neededValue;
-        console.log ("Cost Paid")
-        //Update HTML display
         updateResourceHTML(resource);
+        console.log ("Cost Paid")
     };
 
     //Checks if we have sufficient resource. Returns boolean.
@@ -71,8 +73,8 @@ var resourceBank = {
 
     //Updates resourceBank
         function updateResourceBank(resourceID, newResourceObject){
-            resourceBank[resourceID] = newResourceObject
-        }
+            resourceBank[resourceID] = newResourceObject;
+    };
 
     //Updates HTML for provided resource from resourceBank
         function updateResourceHTML(resource){
@@ -100,12 +102,12 @@ function chopWood(){
         return;
     }
     incrementResource("wood",5)
-}
+};
 function sellWood(){
     if (payCost("wood", 20) == false){
         return;
     }
     incrementResource("gold",1)
-}
+};
 
 console.log("Hello World")

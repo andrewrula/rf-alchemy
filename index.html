@@ -4,28 +4,26 @@
 <head></head>
 
 <body>
-    <!-- These three lines below are the only moving parts! Everything else is boilerplate -->
-
-    <!-- This is just an import, so that the page has access to your javascript. It's loaded into the web pgae alongside the html-->
     <script src="rf-alchemy-main.js"></script>
 
-    <!-- This is a simple element with an id of number - this lets your script find and grab it-->
+<!--Energy-->
     <p> Energy is set to a cap of 20, and increments by 3.</p>
     <p> Energy: </p>
     <p id="energyCount">0</p>
-    <!-- This button literally is finding your "incrementNumber" function and calling it when clicked -->
     <button onclick="takeAMoment()">Take A Moment (Gain 3 Energy) </button>
+
+<!--Wood-->
     <p> Wood is set to a cap of 20, and increments by 5.</p>
     <p> Wood: </p>
     <p id="woodCount">0</p>
     <button onclick="chopWood()">Chop Wood (Cost 10 Energy)</button>
+
+<!--Gold-->
     <p> Gold is set to a cap of 1000, and increments by 1.</p>
     <p> Gold: </p>
     <p id="goldCount">0</p>
     <button onclick="sellWood()">Sell Wood For Gold (Cost 20 wood)</button>
 
-
-    <!-- These three lines above are the only moving parts! Everything else is boilerplate -->
 </body>
 
 </html>
