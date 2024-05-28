@@ -6,8 +6,6 @@ resourceBank
 
 Utility Functions:
 
--incrementResource()
--payCost()
 -checkCatalyst()
 -checkRequirement()
 
@@ -37,7 +35,7 @@ Personal Stats:
     -Impacted by Dowsing Rod (Upgrade for more crystal per dig?)
 
 Explore
-    -First time: Discover
+    -First time: Discover town
     -Unlocks discover townsfolk
         (Discovers Blacksmith, Miller, Tiller, Steward) 
         (Warlord not included)
@@ -64,15 +62,19 @@ Herbalist
      -Buy Herbal Medicine
      -Gossip (- Reputation, +Secret[low cap])
 
-Farmhand
+Farmhand/Tiller
      - Work (-Stamina, +Coinage)
      - Buy Wheat (+Stamina)
 
-Noble
+Warlord
      - Tithe (-Coin, +Reputation)
      - Serve (-Reputation, +Coinage)
-     -Convince (--Reputation, +1 Plot of Land)
+     - Convince (--Reputation, +1 Plot of Land)
 
 Hunter
     -Buy Game (+food, -coinage)
     -Go On A Hunt
+
+Miller
+
+

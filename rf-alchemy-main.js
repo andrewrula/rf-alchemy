@@ -15,6 +15,56 @@ var resourceBank = {
         capacity: 1000,
         id: "goldCount"
     },
+    exploration:{
+        quant: 0,
+        capacity: 1000,
+        id: "exploreCount"
+    },
+    stamina:{
+        quant: 0,
+        capacity: 50,
+        id: "staminaCount"
+    },
+    strength:{
+        quant: 0,
+        capacity: 50,
+        id: "strengthCount"
+    },
+    dirt:{
+        quant: 0,
+        capacity: 5000,
+        id: "dirtCount"
+    },
+    crystal:{
+        quant: 0,
+        capacity: 5,
+        id: "crystalCount"
+    },
+    blacksmithReputation:{
+        quant: 0,
+        capacity: 100,
+        id: "blacksmithReputation"
+    },
+    innkeepReputation:{
+        quant: 0,
+        capacity: 100,
+        id: "inkeepReputation"
+    },
+    herbalistReputation:{
+        quant: 0,
+        capacity: 100,
+        id: "herbalistReputation"
+    },
+    hunterReputation:{
+        quant: 0,
+        capacity: 100,
+        id: "hunterReputation"
+    },
+    warlordReputation:{
+        quant: 0,
+        capacity: 100,
+        id: "warlordReputation"
+    },
 }
 
 //Utility Functions
@@ -76,12 +126,11 @@ var resourceBank = {
         costElement.textContent = resourceBank[resource].quant;
     };
 
-    //NYI - 
-        function checkCatalyst(resource, neededValue){
+        function checkCatalyst(resource, neededValue){//NYI
 
     };
-    //NYI
-        function setResource(resource, setValue, ignoreCap){
+
+        function setResource(resource, setValue, ignoreCap){//NYI
         
     };
 
@@ -103,5 +152,25 @@ function sellWood(){
     }
     incrementResource("gold",1)
 };
+function explore(){
+    if (payCost("energy", 10) == false){
+        return;
+    }
+    incrementResource("exploration",1)
+};
+function discover(){ //NYI
+    if (payCost("exploration", 10) == false){
+        return;
+    }
+    //This function should choose one if the valid, undiscovered things in the game and discover it. To do this, we'll need to have some kind of visibility toggle on all sections of the game field.
+};
+function workOut(){ //NYI
+//Increases strength or stamina?
+};
+function digHole(){ //NYI
+//Rarely also produces crystal
+
+};
+
 
 console.log("Hello World")
