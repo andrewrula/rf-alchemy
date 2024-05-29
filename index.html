@@ -7,23 +7,26 @@
     <script src="rf-alchemy-main.js"></script>
 
 <!--Energy-->
-    <p> Energy is set to a cap of 20, and increments by 3.</p>
-    <p> Energy: </p>
-    <p id="energyCount">0</p>
-    <button onclick="takeAMoment()">Take A Moment (Gain 3 Energy) </button>
-
+    <div id="energyVis" style="display:block">
+        <p> Energy is set to a cap of 20, and increments by 3.</p>
+        <p> Energy: </p>
+        <p id="energyCount">0</p>
+        <button onclick="takeAMoment()">Take A Moment (Gain 3 Energy) </button>
+    </div>
 <!--Wood-->
-    <p> Wood is set to a cap of 20, and increments by 5.</p>
-    <p> Wood: </p>
-    <p id="woodCount">0</p>
-    <button onclick="chopWood()">Chop Wood (Cost 10 Energy)</button>
-
+    <div id="woodVis" style="display:none">
+        <p> Wood is set to a cap of 20, and increments by 5.</p>
+        <p> Wood: </p>
+        <p id="woodCount">0</p>
+        <button onclick="chopWood()">Chop Wood (Cost 10 Energy)</button>
+    </div>
 <!--Gold-->
-    <p> Gold is set to a cap of 1000, and increments by 1.</p>
-    <p> Gold: </p>
-    <p id="goldCount">0</p>
-    <button onclick="sellWood()">Sell Wood For Gold (Cost 20 wood)</button>
-
+    <div id="goldVis" style="display:none">
+        <p> Gold is set to a cap of 1000, and increments by 1.</p>
+        <p> Gold: </p>
+        <p id="goldCount">0</p>
+        <button onclick="sellWood()">Sell Wood For Gold (Cost 20 wood)</button>
+    </div>
 </body>
 
 </html>
