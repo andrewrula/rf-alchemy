@@ -84,9 +84,8 @@ var resourceBank = {
     },
 }
 
-//Utility Functions
-    //Generic Resource Go Up By (number)
-function incrementResource(resource, increment){
+//Utility Functions 
+function incrementResource(resource, increment){//Generic Resource Increment
 //Setup Vars
     var workingResource = resourceBank[resource];
     if(workingResource.quant + increment >= workingResource.capacity){
@@ -101,9 +100,7 @@ function incrementResource(resource, increment){
     updateResourceHTML(resource);
     updateVisibility(resource);
 };
-
-//Checks and Pays Cost 
-    function payCost(resource, neededValue){
+function payCost(resource, neededValue){//Checks and Pays Cost
     //Checks if cost can be paid
     if(checkCost(resource,neededValue) == false){
         console.log("Failed to Pay Cost")
@@ -119,9 +116,7 @@ function incrementResource(resource, increment){
     updateResourceHTML(resource);
     console.log ("Cost Paid")
 };
-
-//Checks if we have sufficient resource. Returns boolean.
-    function checkCost(resource, neededValue){
+function checkCost(resource, neededValue){//Checks if we have sufficient resource. Returns boolean.
         if(resource == "none"){
             return true;}
         else if(resourceBank[resource].quant >= neededValue){
@@ -132,74 +127,56 @@ function incrementResource(resource, increment){
             return false
         }
 };
-
-//Updates resourceBank
-    function updateResourceBank(resourceID, newResourceObject){
+function updateResourceBank(resourceID, newResourceObject){//replaces a resource with new copy
         resourceBank[resourceID] = newResourceObject;
 };
-
-//Updates HTML for provided resource from resourceBank
-function updateResourceHTML(resource){
+function updateResourceHTML(resource){//Updates HTML for provided resource from resourceBank
     const costElement = document.getElementById(resourceBank[resource].id);
     costElement.textContent = resourceBank[resource].quant;
 };
-
-
-
 function checkCatalyst(resource, neededValue){//NYI
 
 };
-
 function setResource(resource, setValue, ignoreCap){//NYI
     
 };
-
-function setVisible(resource){
+function setVisible(resource){//Sets visibility in resourceBank to true, if false
     console.log("Checking if " + resource + " is visible");    
     if(resourceBank[resource].visible == false){
         console.log(resource + " is not visible. Setting to true!")
         resourceBank[resource].visible = true
     };
 };
-
-function setHidden(resource){
+function setHidden(resource){//Sets visibility in resourceBank to false, if true
     if(resourceBank[resource].visible == true){
         resourceBank[resource].visible = false
     };
 };
-
-function updateVisibility(visTrigger){
+function updateVisibility(visTrigger){//Updates all resources with provided visTrigger to be visible.
     for(const resource in resourceBank){
         if(resourceBank[resource].visibilityTrigger == visTrigger){
             setVisible(resource);
             updateVisibilityHTML(resource)
         };
-    }
-
-function updateVisibilityHTML(resource){
+    };
+};   
+function updateVisibilityHTML(resource){//Sets HTML for provided resource to visible
     const visElement = document.getElementById(resourceBank[resource].visibilityTarget);
     visElement.style.setProperty('display','block')
 };
 
-    //if <visibilityTrigger> == resource
-        //setVisible(that resource)
-        //updateVisibilityinHTML
-    
-};
-
-
 
 //Player Functions
-function takeAMoment(){
+function takeAMoment(){// + energy
     incrementResource("energy", 3)
 };
-function chopWood(){
+function chopWood(){// +wood, -energy
     if (payCost("energy", 10) == false){
         return;
     }
     incrementResource("wood",5)
 };
-function sellWood(){
+function sellWood(){// +gold, -wood
     if (payCost("wood", 20) == false){
         return;
     }
