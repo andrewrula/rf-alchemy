@@ -134,8 +134,14 @@ function updateResourceHTML(resource){//Updates HTML for provided resource from 
     const costElement = document.getElementById(resourceBank[resource].id);
     costElement.textContent = resourceBank[resource].quant;
 };
-function checkCatalyst(resource, neededValue){//NYI
-
+function checkCatalyst(resource, neededValue){
+    if(resourceBank[resource].quant >= neededValue){
+        return true;
+        }
+    else if (resourceBank[resource].quant < neededValue){
+        console.log("Not enough " + resource)
+        return false
+    }
 };
 function setResource(resource, setValue, ignoreCap){//NYI
     
