@@ -90,11 +90,11 @@ function incrementResource(resource, increment){//Generic Resource Increment
     var workingResource = resourceBank[resource];
     if(workingResource.quant + increment >= workingResource.capacity){
         workingResource.quant = resourceBank[resource].capacity;
-        console.log("Resource incremented but hit cap!");
+        console.log(resource + " incremented by " + increment + " but hit cap!");
     }
     else{
         workingResource.quant = workingResource.quant + increment
-        console.log("Resource incremented.");
+        console.log(resource + " incremented by " + increment);
     };
     updateResourceBank(resource, workingResource);
     updateResourceHTML(resource);
@@ -164,7 +164,17 @@ function updateVisibilityHTML(resource){//Sets HTML for provided resource to vis
     const visElement = document.getElementById(resourceBank[resource].visibilityTarget);
     visElement.style.setProperty('display','block')
 };
-
+function resourceIntervalToCap(resource, gain, interval){    
+    function resourceLoop(){  
+        incrementResource(resource, gain); 
+        if(resourceBank[resource].quant == resourceBank[resource].capacity){
+           console.log("Ending Interval")
+           clearInterval(intervalID); 
+        };
+    };
+    console.log("Starting loop");
+    const intervalID = setInterval(resourceLoop,interval, resource, gain);
+};
 
 //Player Functions
 function takeAMoment(){// + energy
@@ -200,6 +210,9 @@ function workOut(){ //NYI
 function digHole(){ //NYI
 //Rarely also produces crystal
 
+};
+function rest(){//NYI Gain one energy per second until capped
+    resourceIntervalToCap("energy",1,1000)
 };
 
 
